@@ -12,8 +12,8 @@ import static org.junit.Assert.assertEquals;
 /** Test of the written driving directions part of the assignment. This part of the assignment is 
   * optional and not worth any credit, and these tests should be thought of as just for fun.*/
 public class TestDirections {
-    private static final String PATHS_FILE = "path_results.txt";
-    private static final String RESULTS_FILE = "directions_results.txt";
+    private static final String PATHS_FILE = "test_data/path_results.txt";
+    private static final String RESULTS_FILE = "test_data/directions_results.txt";
     private static final int NUM_TESTS = 8;
     private static final String OSM_DB_PATH = "data/berkeley-2018.osm.xml";
     private static GraphDB graph;
