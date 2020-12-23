@@ -15,7 +15,7 @@ public class TestRouter {
     private static final String PARAMS_FILE = "test_data/path_params.txt";
     private static final String RESULTS_FILE = "test_data/path_results.txt";
     private static final int NUM_TESTS = 8;
-    private static final String OSM_DB_PATH = "data/berkeley-2018.osm.xml";
+    private static final String OSM_DB_PATH = "berkeley-2018.osm.xml";
     private static GraphDB graph;
     private static boolean initialized = false;
 

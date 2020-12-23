@@ -40,12 +40,12 @@ public class MapServer {
     /** Route stroke information: Cyan with half transparency. */
     public static final Color ROUTE_STROKE_COLOR = new Color(108, 181, 230, 200);
     /** The tile images are in the IMG_ROOT folder. */
-    private static final String IMG_ROOT = "data/proj3_imgs/";
+    private static final String IMG_ROOT = "proj3_imgs/";
     /**
      * The OSM XML file path. Downloaded from <a href="http://download.bbbike.org/osm/">here</a>
      * using custom region selection.
      **/
-    private static final String OSM_DB_PATH = "data/berkeley-2018.osm.xml";
+    private static final String OSM_DB_PATH = "berkeley-2018.osm.xml";
     /**
      * Each raster request to the server will have the following parameters
      * as keys in the params map accessible by,
@@ -88,7 +88,16 @@ public class MapServer {
         rasterer = new Rasterer();
     }
 
+    private static int getHerokuAssignedPort() {
+        ProcessBuilder processBuilder = new ProcessBuilder();
+        if (processBuilder.environment().get("PORT") != null) {
+            return Integer.parseInt(processBuilder.environment().get("PORT"));
+        }
+        return 4567; //return default port if heroku-port isn't set (i.e. on localhost)
+    }
+
     public static void main(String[] args) {
+        port(getHerokuAssignedPort());
         initialize();
         staticFileLocation("/page");
         /* Allow for all origin requests (since this is not an authenticated server, we do not
@@ -256,8 +265,9 @@ public class MapServer {
         BufferedImage tileImg = null;
         if (tileImg == null) {
             try {
-                File in = new File(imgPath);
-                tileImg = ImageIO.read(in);
+                // File in = new File(imgPath);
+                // tileImg = ImageIO.read(in);
+                tileImg = ImageIO.read(Thread.currentThread().getContextClassLoader().getResource(imgPath));
             } catch (IOException | NullPointerException e) {
                 e.printStackTrace();
             }
