@@ -28,6 +28,7 @@ public class Tries {
         curr.name = s;
     }
 
+    /* Return all the strings in the trie that start with {@code prefix}. */
     public List<String> withPrefix(String prefix) {
         List<String> results = new LinkedList<>();
         TrieNode next = getNext(root, prefix, 0);
